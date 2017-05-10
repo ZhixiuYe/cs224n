@@ -1,0 +1,40 @@
+INFO:Testing implementation of RNNModel
+INFO:Loading training data...
+INFO:Done. Read 721 sentences
+INFO:Loading dev data...
+INFO:Done. Read 721 sentences
+INFO:Built dictionary for 2653 features.
+INFO:Initialized embeddings.
+INFO:Building model...
+/home/zxye/assignment2/.env/local/lib/python2.7/site-packages/tensorflow/python/ops/embedding_ops.py:98: FutureWarning: comparison to `None` will result in an elementwise object comparison in the future.
+  if params in (None, (), []):
+Traceback (most recent call last):
+  File "q2_rnn.py", line 609, in <module>
+    ARGS.func(ARGS)
+  File "q2_rnn.py", line 449, in do_test2
+    model = RNNModel(helper, config, embeddings)
+  File "q2_rnn.py", line 414, in __init__
+    self.build()
+  File "/home/zxye/assignment3/model.py", line 108, in build
+    self.pred = self.add_prediction_op()
+  File "q2_rnn.py", line 296, in add_prediction_op
+    out, new_state = cell(x[:,time_step,:], old_state, scope=self.config.cell)
+  File "/home/zxye/assignment3/q2_rnn_cell.py", line 69, in __call__
+    new_state = tf.nn.sigmoid(tf.matmul(inputs, W_x) + tf.matmul(state, W_h) + b)
+  File "/home/zxye/assignment2/.env/local/lib/python2.7/site-packages/tensorflow/python/ops/math_ops.py", line 1801, in matmul
+    a, b, transpose_a=transpose_a, transpose_b=transpose_b, name=name)
+  File "/home/zxye/assignment2/.env/local/lib/python2.7/site-packages/tensorflow/python/ops/gen_math_ops.py", line 1263, in _mat_mul
+    transpose_b=transpose_b, name=name)
+  File "/home/zxye/assignment2/.env/local/lib/python2.7/site-packages/tensorflow/python/framework/op_def_library.py", line 768, in apply_op
+    op_def=op_def)
+  File "/home/zxye/assignment2/.env/local/lib/python2.7/site-packages/tensorflow/python/framework/ops.py", line 2338, in create_op
+    set_shapes_for_outputs(ret)
+  File "/home/zxye/assignment2/.env/local/lib/python2.7/site-packages/tensorflow/python/framework/ops.py", line 1719, in set_shapes_for_outputs
+    shapes = shape_func(op)
+  File "/home/zxye/assignment2/.env/local/lib/python2.7/site-packages/tensorflow/python/framework/ops.py", line 1669, in call_with_requiring
+    return call_cpp_shape_fn(op, require_shape_fn=True)
+  File "/home/zxye/assignment2/.env/local/lib/python2.7/site-packages/tensorflow/python/framework/common_shapes.py", line 610, in call_cpp_shape_fn
+    debug_python_shape_fn, require_shape_fn)
+  File "/home/zxye/assignment2/.env/local/lib/python2.7/site-packages/tensorflow/python/framework/common_shapes.py", line 676, in _call_cpp_shape_fn_impl
+    raise ValueError(err.message)
+ValueError: Shape must be rank 2 but is rank 1 for 'RNN/rnn/MatMul_1' (op: 'MatMul') with input shapes: [300], [300,300].
